@@ -3,11 +3,11 @@ use crate::helpers::spawn_app;
 #[actix_rt::test]
 async fn health_check_endpoint_status_is_success() {
     // Arrange
-    let app = spawn_app();
+    let app = spawn_app().await;
     let client = reqwest::Client::new();
     // Act
     let response = client
-        .get(&format!("{}/health_check", &app))
+        .get(&format!("{}/health_check", &app.address))
         .send()
         .await
         .expect("Failed to execute request.");

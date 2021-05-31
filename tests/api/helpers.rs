@@ -1,15 +1,28 @@
-use std::net::TcpListener;
+use template::configuration::get_configuration;
+use template::startup::Application;
+
+pub struct TestApp {
+    pub address: String,
+}
 
 // Test app instance that will be used by all intergration tests
-pub fn spawn_app() -> String {
-    // Using port 0 to trigger an OS scan for available port
-    let listener = TcpListener::bind("127.0.0.1:0").expect("Failed to bind random port");
-    // Retrieve the random port assigned by the OS
-    let port = listener.local_addr().unwrap().port();
-    let server = template::startup::run(listener).expect("Failed to bind address");
-    // Using tokio::spawn to launch server as background task
-    // Using the non-binding let _ as spawned future is not required
-    let _ = tokio::spawn(server);
-    // Return application address to the caller
-    format!("http://127.0.0.1:{}", port)
+pub async fn spawn_app() -> TestApp {
+    // Get configuration
+    let configuration = {
+        let mut c = get_configuration().expect("Failed to read configuration");
+        // Use a random port
+        c.application.port = 0;
+        c
+    };
+    // build application
+    let application = Application::build(configuration.clone())
+        .await
+        .expect("Failed to build application");
+    let application_port = application.port();
+    // Using tokio to run app as background task for testing
+    let _ = tokio::spawn(application.run_until_stopped());
+    // Now return the application address to caller
+    TestApp {
+        address: format!("http://localhost:{}", application_port),
+    }
 }
