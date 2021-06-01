@@ -1,7 +1,7 @@
 use crate::helpers::spawn_app;
 
 #[actix_rt::test]
-async fn health_check_endpoint_status_is_success() {
+async fn health_check_endpoint_returns_200_ok() {
     // Arrange
     let app = spawn_app().await;
     let client = reqwest::Client::new();

@@ -7,8 +7,8 @@ Replace `template` with your project-name and you have initial project structure
 ## Pre-Requisite:
 
 - [Rust](https://www.rust-lang.org/tools/install)
-- Install relevant plugins for VsCode - [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=matklad.rust-analyzer) / IntelliJ - [IntelliJ Rust](https://www.jetbrains.com/rust/)
-- Alternatively use provided devcontainer as reproducible dev setup which makes it easy to get started.
+- Install relevant plugins for VsCode - [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=matklad.rust-analyzer) and [CodeLLDB](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb) / IntelliJ - [IntelliJ Rust](https://www.jetbrains.com/rust/)
+- Alternatively use provided devcontainer as reproducible dev setup which makes it easy to get started
 
 ## How to build:
 
