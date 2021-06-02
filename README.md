@@ -1,5 +1,7 @@
 # actix-web starter template
 
+[![Rust-CI](https://github.com/mandeepsmagh/actix-web-starter-template/actions/workflows/ci.yml/badge.svg)](https://github.com/mandeepsmagh/actix-web-starter-template/actions/workflows/ci.yml)
+
 actix-web example that is more than just hello_world and also that is not too complex to understand for Rust / actix-web beginners.
 
 Replace `template` with your project-name and you have initial project structure.
